@@ -6,3 +6,24 @@ body {
 a {
   color: #00B7FF;
 }
+
+button {
+  background-color: cadetblue;
+  padding: 1rem;
+}
+
+#cities {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#cities div {
+  width: 13rem;
+  height: 10rem;
+  border: cadetblue 1px solid;
+  padding: 1rem;
+
+}
