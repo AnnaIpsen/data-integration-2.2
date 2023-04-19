@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Express</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><strong>Data integration</strong></li>
+        </ul>
+        <ul>
+            <li><a href="index.html">Cities</a></li>
+            <li><a href="world.html">World</a></li>
+        </ul>
+    </nav>
+
+    <div id='world'>
+        <article v-for='country in countriesList'>
+            <div>
+                <hgroup>
+                    <h2>{{country.name}}</h2>
+                    <h3>Local name: {{country.localname}}</h3>
+                </hgroup>
+                <div class="grid">
+                    <section>
+                        <p><b>Countrycode:</b> {{country.code}}</p>
+                        <p><b>Continent:</b> {{country.continent}}</p>
+                        <p><b>Population:</b> {{country.population}} people</p>
+                    </section>
+                    <section>
+                        <p v-if="country.governtmentform"><b>Government form:</b> {{country.governtmentform}}</p>
+                        <p><b>Head of state:</b> {{country.headofstate}}</p>
+                        <p><b>Independent year:</b> {{country.indepyear}}</p>
+                    </section>
+                </div>
+            </div>
+
+            <div class="grid">
+                <button>Update</button>
+                <button class="secondary outline">Delete</button>
+            </div>
+        </article>
+    </div>
+
+<script src="/javascripts/script.js"></script>
+</body>
+
+</html>

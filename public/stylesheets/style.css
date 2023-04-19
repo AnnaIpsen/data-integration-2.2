@@ -3,16 +3,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
-
-button {
-  background-color: cadetblue;
-  padding: 1rem;
-}
-
-#cities {
+#citiesList, #world {
   margin-top: 4rem;
   display: flex;
   flex-direction: row;
@@ -20,10 +11,24 @@ button {
   flex-wrap: wrap;
 }
 
-#cities div {
-  width: 13rem;
-  height: 10rem;
-  border: cadetblue 1px solid;
+#citiesList article {
+  width: 16rem;
   padding: 1rem;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+#cities h3 {
+  text-transform: uppercase;
+}
+
+#world article {
+  width: 32rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#world article hgroup, button {text-transform: uppercase !important;}

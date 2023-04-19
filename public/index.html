@@ -1,15 +1,90 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <title>Express</title>
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
 </head>
 
 <body>
-  <h1>Data integration 2.2</h1>
+  <nav>
+    <ul>
+      <li><strong>Data integration</strong></li>
+    </ul>
+    <ul>
+      <li><a href="index.html">Cities</a></li>
+      <li><a href="world.html">World</a></li>
+    </ul>
+  </nav>
 
-  <button id="getCities">Get cities</button>
-  <section id="cities"></section>
+  <div id='cities'>
+    <button @click="showModal = true">+ add city</button>
+
+    <div v-show="showModal" id="modal" class="container">
+      <form>
+      <h3>Add new city</h3>
+        <div class="grid">
+          <label for="name">
+            City name
+            <input v-model="form.name" type="text" id="name" name="name" placeholder="City name" required>
+          </label>
+
+          <label for="countrycode">
+            Countrycode
+            <input v-model="form.countrycode" type="text" id="countrycode" name="countrycode" placeholder="Countrycode" required>
+          </label>
+        </div>
+        <label for="district">
+          District
+          <input v-model="form.district" type="text" id="district" name="district" placeholder="District" required>
+        </label>
+        <label for="population">
+          Population
+            <input v-model="form.population" type="number" id="population" name="population" placeholder="Population" required>
+        </label>
+
+        <div class="grid">
+          <button @click="postCity" type="submit">Submit</button>
+          <button class="secondary outline" @click="showModal = false">cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <h2>Get cities by country</h2>
+      <details role="list">
+        <summary aria-haspopup="listbox" role="button" class="secondary">
+          Select country
+        </summary>
+        <ul role="listbox">
+          <li @click="getCities"><a>All coutries</a></li>
+          <li v-for="country in countriesList" @click="getCityByCountry(country.code)">
+            <a>{{country.name}}</a>
+          </li>
+        </ul>
+      </details>
+    </div>
+
+    <section id="citiesList">
+      <article v-for='city in citiesList'>
+        <div>
+          <h3>{{city.name}}</h3>
+          <p><b>Countrycode:</b> {{city.countrycode}}</p>
+          <p><b>District:</b> {{city.district}}</p>
+          <p><b>Population:</b> {{city.population}} people</p>
+        </div>
+
+        <div class="grid">
+          <button>Update</button>
+          <button class="secondary outline" @click="deleteCity(city.oldid)">Delete</button>
+        </div>
+      </article>
+    </section>
+
+  </div>
 
   <script src="/javascripts/script.js"></script>
 </body>
