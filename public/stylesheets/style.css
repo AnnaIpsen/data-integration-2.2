@@ -3,8 +3,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-#citiesList, #world {
-  margin-top: 4rem;
+h1{margin-top: 2rem; !important;}
+
+#citiesList, #worldList {
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -12,19 +14,19 @@ body {
 }
 
 #citiesList article {
-  width: 16rem;
+  width: 32%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#cities h3 {
+#cities h3, h1, h2 {
   text-transform: uppercase;
 }
 
 #world article {
-  width: 32rem;
+  width: 27rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;

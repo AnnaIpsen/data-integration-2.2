@@ -40,7 +40,7 @@ module.exports = {
         }
     },
 
-    postCity: async function (req,res, next) {
+    postCity: async function (req, res, next) {
         try {
             // first find new sequenceno
             let cursor = await APICity.find().sort( { oldid: -1 } ).limit(1);
@@ -56,7 +56,8 @@ module.exports = {
             });
 
             // then insert
-            let newcity = await APICity.create(city);
+            let newcity = await city.save();
+            console.log(newcity);
             // create middleware variable
             res.locals.newcity = newcity;
             next();

@@ -20,55 +20,56 @@
     </ul>
   </nav>
 
-  <div id='cities'>
-    <button @click="showModal = true">+ add city</button>
+  <div id='cities' class="container" style="margin-top: 4rem">
+    <h1>Cities</h1>
+    <section>
+      <button @click="showModal = true">+ add city</button>
 
-    <div v-show="showModal" id="modal" class="container">
-      <form>
-      <h3>Add new city</h3>
-        <div class="grid">
-          <label for="name">
-            City name
-            <input v-model="form.name" type="text" id="name" name="name" placeholder="City name" required>
+      <div v-show="showModal" id="modal" class="container">
+        <form>
+        <h3>Add new city</h3>
+          <div class="grid">
+            <label for="name">
+              City name
+              <input v-model="form.name" type="text" id="name" name="name" placeholder="City name" required>
+            </label>
+
+            <label for="countrycode">
+              Countrycode
+              <input v-model="form.countrycode" type="text" id="countrycode" name="countrycode" placeholder="Countrycode" required>
+            </label>
+          </div>
+          <label for="district">
+            District
+            <input v-model="form.district" type="text" id="district" name="district" placeholder="District" required>
+          </label>
+          <label for="population">
+            Population
+              <input v-model="form.population" type="number" id="population" name="population" placeholder="Population" required>
           </label>
 
-          <label for="countrycode">
-            Countrycode
-            <input v-model="form.countrycode" type="text" id="countrycode" name="countrycode" placeholder="Countrycode" required>
-          </label>
-        </div>
-        <label for="district">
-          District
-          <input v-model="form.district" type="text" id="district" name="district" placeholder="District" required>
-        </label>
-        <label for="population">
-          Population
-            <input v-model="form.population" type="number" id="population" name="population" placeholder="Population" required>
-        </label>
-
-        <div class="grid">
-          <button @click="postCity" type="submit">Submit</button>
-          <button class="secondary outline" @click="showModal = false">cancel</button>
-        </div>
-      </form>
-    </div>
+          <div class="grid">
+            <button @click="postCity" type="submit">Submit</button>
+            <button class="secondary outline" @click="showModal = false">cancel</button>
+          </div>
+        </form>
+      </div>
+    </section>
 
     <div>
       <h2>Get cities by country</h2>
-      <details role="list">
-        <summary aria-haspopup="listbox" role="button" class="secondary">
-          Select country
-        </summary>
-        <ul role="listbox">
-          <li @click="getCities"><a>All coutries</a></li>
-          <li v-for="country in countriesList" @click="getCityByCountry(country.code)">
-            <a>{{country.name}}</a>
-          </li>
-        </ul>
-      </details>
+      <label>
+        Select country
+        <select name="country">
+            <option @click="getCities">All coutries</option>
+            <option v-for="country in countriesList" @click="getCityByCountry(country.code)">
+              {{country.name}}
+            </option>
+        </select>
+      </label>
     </div>
 
-    <section id="citiesList">
+    <div id="citiesList">
       <article v-for='city in citiesList'>
         <div>
           <h3>{{city.name}}</h3>
@@ -82,7 +83,7 @@
           <button class="secondary outline" @click="deleteCity(city.oldid)">Delete</button>
         </div>
       </article>
-    </section>
+    </div>
 
   </div>
 

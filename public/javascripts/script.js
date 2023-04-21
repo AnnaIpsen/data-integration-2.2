@@ -6,12 +6,7 @@ const cities = Vue.createApp({
             citiesList: [],
             countriesList: [],
             showModal: false,
-            form: {
-                name: '',
-                countrycode: '',
-                district: '',
-                population: ''
-            },
+            form: {},
             selectedCountry: ''
         }
     },
@@ -28,24 +23,30 @@ const cities = Vue.createApp({
         },
         async postCity(e){
             e.preventDefault()
-            console.log(JSON.stringify(this.form))
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(this.form)
+                body: JSON.stringify({
+                    name: this.form.name,
+                    countrycode: this.form.countrycode,
+                    district: this.form.district,
+                    population: this.form.population
+                })
             };
 
-            await fetch('http://localhost:3000/cities', requestOptions)
+            const response = await fetch('http://localhost:3000/cities', requestOptions)
                 .then(()=>{
                     alert('City was added successfully to database')
                 })
                 .then(()=> {
-                    //this.getCities()
-                    //this.showModal = false
+                    this.getCities()
+                    this.showModal = false
                 })
                 .catch(()=>{
                     alert('Some error occurred ')
                 })
+
+            return response.json()
 
         },
         async deleteCity(id){

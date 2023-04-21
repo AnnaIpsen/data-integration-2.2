@@ -20,32 +20,37 @@
         </ul>
     </nav>
 
-    <div id='world'>
-        <article v-for='country in countriesList'>
-            <div>
-                <hgroup>
-                    <h2>{{country.name}}</h2>
-                    <h3>Local name: {{country.localname}}</h3>
-                </hgroup>
-                <div class="grid">
-                    <section>
-                        <p><b>Countrycode:</b> {{country.code}}</p>
-                        <p><b>Continent:</b> {{country.continent}}</p>
-                        <p><b>Population:</b> {{country.population}} people</p>
-                    </section>
-                    <section>
-                        <p v-if="country.governtmentform"><b>Government form:</b> {{country.governtmentform}}</p>
-                        <p><b>Head of state:</b> {{country.headofstate}}</p>
-                        <p><b>Independent year:</b> {{country.indepyear}}</p>
-                    </section>
-                </div>
-            </div>
+    <div id='world' class="container" style="margin-top: 4rem">
+        <h1>World</h1>
 
-            <div class="grid">
-                <button>Update</button>
-                <button class="secondary outline">Delete</button>
-            </div>
-        </article>
+        <div id="worldList">
+            <article v-for='country in countriesList'>
+                <div>
+                    <hgroup>
+                        <h2>{{country.name}}</h2>
+                        <h3>Local name: {{country.localname}}</h3>
+                    </hgroup>
+                    <div class="grid">
+                        <section>
+                            <p><b>Countrycode:</b> <br>{{country.code}}</p>
+                            <p><b>Continent:</b> <br>{{country.continent}}</p>
+                            <p><b>Population:</b> <br>{{country.population}} people</p>
+                        </section>
+                        <section>
+                            <p v-if="country.governtmentform"><b>Government form:</b> {{country.governtmentform}}</p>
+                            <p><b>Head of state:</b> <br>{{country.headofstate}}</p>
+                            <p><b>Independent year:</b> <br>{{country.indepyear}}</p>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <button>Update</button>
+                    <button class="secondary outline">Delete</button>
+                </div>
+            </article>
+        </div>
+
     </div>
 
 <script src="/javascripts/script.js"></script>
