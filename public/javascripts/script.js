@@ -7,7 +7,7 @@ const cities = Vue.createApp({
             countriesList: [],
             showModal: false,
             form: {},
-            selectedCountry: ''
+            selected:'',
         }
     },
     methods: {                          // component methods
@@ -35,7 +35,10 @@ const cities = Vue.createApp({
             };
 
             const response = await fetch('http://localhost:3000/cities', requestOptions)
-                .then(()=>{
+                .then(res =>{
+                    if (!res.ok) {
+                        return Promise.reject(error);
+                    }
                     alert('City was added successfully to database')
                 })
                 .then(()=> {
@@ -60,8 +63,14 @@ const cities = Vue.createApp({
                 })
         },
 
-        async getCityByCountry(code) {
-            let list = await fetch(`http://localhost:3000/citiescountry/${code}`);
+        async getCityByCountry() {
+
+            if(this.selected === 'getAll'){
+                this.getCities()
+                return
+            }
+
+            let list = await fetch(`http://localhost:3000/citiescountry/${this.selected}`);
             let finalist = await list.json();
             this.citiesList = finalist.cities;
         }

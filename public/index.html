@@ -60,9 +60,9 @@
       <h2>Get cities by country</h2>
       <label>
         Select country
-        <select name="country">
-            <option @click="getCities">All coutries</option>
-            <option v-for="country in countriesList" @click="getCityByCountry(country.code)">
+        <select v-model="selected" name="country" @change="getCityByCountry()">
+            <option value="getAll">All coutries</option>
+            <option v-for="country in countriesList" :value="country.code">
               {{country.name}}
             </option>
         </select>
