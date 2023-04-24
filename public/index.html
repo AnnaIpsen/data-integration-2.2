@@ -35,8 +35,15 @@
             </label>
 
             <label for="countrycode">
-              Countrycode
-              <input v-model="form.countrycode" type="text" id="countrycode" name="countrycode" placeholder="Countrycode" required>
+              Country
+              <select v-model="form.countrycode" name="countrycode" id="countrycode" required>
+                <option value="" selected>Select a country…</option>
+                <option value="DNK">Denmark</option>
+                <option value="NOR">Norway</option>
+                <option value="ISL">Iceland</option>
+                <option value="SWE">Sweden</option>
+                <option value="FIN">Finland</option>
+              </select>
             </label>
           </div>
           <label for="district">
@@ -61,7 +68,7 @@
       <label>
         Select country
         <select v-model="selected" name="country" @change="getCityByCountry()">
-            <option value="getAll">All coutries</option>
+            <option value="getAll" selected>All coutries</option>
             <option v-for="country in countriesList" :value="country.code">
               {{country.name}}
             </option>

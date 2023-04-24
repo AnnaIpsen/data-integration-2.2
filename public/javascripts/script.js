@@ -26,19 +26,16 @@ const cities = Vue.createApp({
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: this.form.name,
-                    countrycode: this.form.countrycode,
-                    district: this.form.district,
-                    population: this.form.population
-                })
+                body: JSON.stringify(this.form)
             };
 
-            const response = await fetch('http://localhost:3000/cities', requestOptions)
-                .then(res =>{
+            await fetch('http://localhost:3000/cities', requestOptions)
+                .then(async res =>{
                     if (!res.ok) {
                         return Promise.reject(error);
                     }
+                    const data = await res.json()
+                    console.log(data)
                     alert('City was added successfully to database')
                 })
                 .then(()=> {
@@ -48,9 +45,6 @@ const cities = Vue.createApp({
                 .catch(()=>{
                     alert('Some error occurred ')
                 })
-
-            return response.json()
-
         },
         async deleteCity(id){
             await fetch(`http://localhost:3000/cities/${id}`, { method: 'DELETE' })

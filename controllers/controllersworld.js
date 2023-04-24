@@ -56,7 +56,7 @@ module.exports = {
             });
 
             // then insert
-            let newcity = await city.save();
+            let newcity = await APICity.create(city);
             console.log(newcity);
             // create middleware variable
             res.locals.newcity = newcity;
